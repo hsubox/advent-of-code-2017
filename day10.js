@@ -72,7 +72,7 @@ const assert = require('assert');
 
 const input = [212, 254, 178, 237, 2, 0, 1, 54, 167, 92, 117, 125, 255, 61, 159, 164];
 
-function day9_part1(listSize, input) {
+function day10_part1(listSize, input) {
   let list = [...Array(listSize).keys()];
   let currentPosition = 0;
   for (let i = 0; i < input.length; i++) {
@@ -86,10 +86,10 @@ function day9_part1(listSize, input) {
   return list[0] * list[1];
 }
 
-assert.equal(day9_part1(5, [3, 4, 1, 5]), 12);
-console.log(day9_part1(256, input)); // 212
+assert.equal(day10_part1(5, [3, 4, 1, 5]), 12);
+console.log(day10_part1(256, input)); // 212
 
-function day9_part1_modified(listSize, input, rounds) {
+function day10_part1_modified(listSize, input, rounds) {
   let list = [...Array(listSize).keys()];
   let currentPosition = 0;
   let skipSize = 0;
@@ -107,11 +107,11 @@ function day9_part1_modified(listSize, input, rounds) {
   return list;
 }
 
-function day9_part2(listSize, input) {
+function day10_part2(listSize, input) {
   const finalSequence =  input.split('').map(c => {
     return c.charCodeAt(0);
   }).concat([17, 31, 73, 47, 23]);
-  const sparseHash = day9_part1_modified(256, finalSequence, 64);
+  const sparseHash = day10_part1_modified(256, finalSequence, 64);
   const denseHash = [];
   for (let i = 0; i < 16; i++) {
     denseHash[i] = sparseHash[16 * i];
@@ -124,8 +124,8 @@ function day9_part2(listSize, input) {
     return (hex.length === 1) ? '0' + hex : hex;
   }).join('');
 }
-assert.equal(day9_part2(256, ''), 'a2582a3a0e66e6e86e3812dcb672a272');
-assert.equal(day9_part2(256, 'AoC 2017'), '33efeb34ea91902bb2f59c9920caa6cd');
-assert.equal(day9_part2(256, '1,2,3'), '3efbe78a8d82f29979031a4aa0b16a9d');
-assert.equal(day9_part2(256, '1,2,4'), '63960835bcdc130f0b66d7ff4f6a5a8e');
-console.log(day9_part2(256, input.map(s => s.toString()).join(','))); // 96de9657665675b51cd03f0b3528ba26
+assert.equal(day10_part2(256, ''), 'a2582a3a0e66e6e86e3812dcb672a272');
+assert.equal(day10_part2(256, 'AoC 2017'), '33efeb34ea91902bb2f59c9920caa6cd');
+assert.equal(day10_part2(256, '1,2,3'), '3efbe78a8d82f29979031a4aa0b16a9d');
+assert.equal(day10_part2(256, '1,2,4'), '63960835bcdc130f0b66d7ff4f6a5a8e');
+console.log(day10_part2(256, input.map(s => s.toString()).join(','))); // 96de9657665675b51cd03f0b3528ba26
